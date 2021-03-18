@@ -1,7 +1,7 @@
 # cIOL
 cIOL (constrained ICA with Online Learning) algorithm
 
-### citation
+### Citation
 Y.-E. Lee, N.-S. Kwak, S.-W. Lee, "A Real-Time Movement Artifact Removal Method for Ambulatory Brain-Computer Interfaces," IEEE Trans. on Neural Systems & Rehabilitation Engineering, Vol. 28, No.12, 2020, pp. 2660-2670.
 
 The dataset is available in figshare repository (https://doi.org/10.6084/m9.figshare.13604078) under the terms of Attribution 4.0 International Creative Commons License (http://creativecommons.org/licenses/by/4.0/). The Data description is under review.
