@@ -1,20 +1,24 @@
 %% Offline version for continuous data example
-X = cap_cnt{10,4}.x;
-Y = IMU_cnt{10,4}.x;
+% cap_CNT = cap_cnt{9,4};
+% IMU_CNT = IMU_cnt{9,4};
+load('example_data')
+X = cap_CNT.x;
+Y = IMU_CNT.x;
+
 
 % execute
 [filt_cntX,ref_cICA] = cIOL(X, Y, 100, 'idxRef', 3, 'learningRate',0.001, ...
     'window_time', 2000,'moving_time', 500, 'flag_PCA', true);
 
 % plot the results
-clab = cap_cnt{10,4}.clab;
-figure(1); plot_each_channel(X, 100, [100 110], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz'}, 'scale',100)
-figure(2); plot_each_channel(filt_cntX, 100, [100 110], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz'}, 'scale',100)
+clab = cap_CNT.clab;
+figure(1); plot_each_channel(X, 100, [100 110], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz','POz','Oz'}, 'scale',100)
+figure(2); plot_each_channel(filt_cntX, 100, [100 110], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz','POz','Oz'}, 'scale',100)
 
 %% Pseudo online version for continuous data example
-X = cap_cnt{10,4}.x;
-Y = IMU_cnt{10,4}.x;
-fs = cap_cnt{10,4}.fs;
+X = cap_CNT.x;
+Y = IMU_CNT.x;
+fs = cap_CNT.fs;
 
 filt_cntX = [];
 online_time = 2000; % 2 seconds
@@ -34,20 +38,22 @@ end
 filt_cntX = [filt_cntX; X(length(filt_cntX)+1:end,:)];
 
 % plot the results
-clab = cap_cnt{10,4}.clab;
-figure(1); plot_each_channel(X, 100, [1 5], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz'}, 'scale',100)
-figure(2); plot_each_channel(filt_cntX, 100, [1 5], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz'}, 'scale',100)
+clab = cap_CNT.clab;
+figure(1); plot_each_channel(X, 100, [100 110], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz','POz','Oz'}, 'scale',100)
+figure(2); plot_each_channel(filt_cntX, 100, [100 110], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz','POz','Oz'}, 'scale',100)
 
 %% Offline version for epoched data example
-X = cap_epo{10,4}.x;
-Y = IMU_epo{10,4}.x;
+cap_EPO = cap_epo{9,4};
+IMU_EPO = IMU_epo{9,4};
+X = cap_EPO.x;
+Y = IMU_EPO.x;
 
 % execute
 [filt_cntX,ref_cICA] = cIOL(X, Y, 100, 'idxRef', 1:3, 'learningRate',0.001, ...
-    'window_time', 300,'moving_time', 100);
+    'window_time', 200,'moving_time', 100);
 
 % plot the results
-clab = cap_cnt{10,4}.clab;
-figure(1); plot_each_channel(X, 100, [0 1], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz'}, 'scale',100)
-figure(2); plot_each_channel(filt_cntX, 100, [0 1], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz'}, 'scale',100)
+clab = cap_EPO.clab;
+figure(1); plot_each_channel(X, 100, [0 1], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz','POz','Oz'}, 'scale',100)
+figure(2); plot_each_channel(filt_cntX, 100, [0 1], 'nTrial',200, 'fs', 100, 'chanName', clab, 'channels',{'Cz','Pz','POz','Oz'}, 'scale',100)
 
